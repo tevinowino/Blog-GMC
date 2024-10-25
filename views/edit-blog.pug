@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title Edit Blog - #{title}
+    link(rel='stylesheet', href='/stylesheets/output.css')
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+  body
+    header(class="bg-gray-800 text-white flex justify-between items-center p-4")
+      h1(class="text-2xl font-bold") Edit Blog
+      nav
+        a(href="/admin" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-md text-white font-semibold") Back to Admin Panel
+        a(href="/" class="ml-4 bg-green-600 hover:bg-green-500 px-4 py-2 rounded-md text-white font-semibold") View Website
+        a(href="/logout" class="ml-4 bg-red-600 hover:bg-red-500 px-4 py-2 rounded-md text-white font-semibold") Logout
+
+    // Main Content
+    main(class="container mx-auto px-4 py-8")
+      h2(class="text-xl font-bold mb-6") Edit Blog Post
+      form(action=`/admin/edit-blog/${blog._id}` method="POST" class="space-y-6")
+        div
+          label(for="title" class="block text-gray-700 font-bold") Title
+          input#title(type="text" name="title" value=blog.title required class="w-full mt-2 p-2 border border-gray-300 rounded-md")
+
+        div
+          label(for="content" class="block text-gray-700 font-bold") Content
+          textarea#content(name="content" rows="8" required class="w-full mt-2 p-2 border border-gray-300 rounded-md") #{blog.content}
+
+        div
+          label(for="author" class="block text-gray-700 font-bold") Author
+          input#author(type="text" name="author" value=blog.author required class="w-full mt-2 p-2 border border-gray-300 rounded-md")
+
+        div
+          label(for="poster" class="block text-gray-700 font-bold") Poster URL
+          input#poster(type="text" name="poster" value=blog.poster required class="w-full mt-2 p-2 border border-gray-300 rounded-md")
+
+        div
+          button(type="submit" class="bg-orange-600 hover:bg-orange-500 px-4 py-2 rounded-md text-white font-semibold") Update Blog
+          a(href="/admin" class="ml-4 bg-gray-500 hover:bg-gray-400 px-4 py-2 rounded-md text-white font-semibold") Cancel
+
+    footer(class="bg-gray-800 text-gray-200 text-center py-4 mt-8")
+      p &copy; 2024 Admin Panel. All rights reserved.
